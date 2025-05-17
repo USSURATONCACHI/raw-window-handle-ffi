@@ -10,6 +10,5 @@ keywords = ["raw-window-handle", "window-handle", "ffi", "C"]
 categories = ["development-tools::ffi"]
 
 [dependencies]
-cbindgen = "0.28.0"
 raw-window-handle = "0.6.*"
-thiserror = "2.0.12"
+thiserror = "2.0.*"
