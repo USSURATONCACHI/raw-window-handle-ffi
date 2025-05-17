@@ -1,3 +1,4 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
 use std::num::NonZero;
 
 /// raw_window_handle_ffi:
@@ -34,5 +35,14 @@ impl Win32WindowHandle {
         let mut result = raw_window_handle::Win32WindowHandle::new(self.hwnd);
         result.hinstance = self.hinstance;
         result
+    }
+}
+
+impl From<Win32WindowHandle> for RawWindowHandle {
+    fn from(val: Win32WindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::Win32WindowHandle,
+            data: RawWindowHandleData { win32: val },
+        }
     }
 }

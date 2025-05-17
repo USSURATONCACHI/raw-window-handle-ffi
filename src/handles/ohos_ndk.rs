@@ -1,3 +1,4 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
 use std::{ffi::c_void, ptr::NonNull};
 
 /// raw_window_handle_ffi:
@@ -30,5 +31,14 @@ impl OhosNdkWindowHandle {
     /// and therefore it is impossible to convert to it completely safely.
     pub unsafe fn into(self) -> raw_window_handle::OhosNdkWindowHandle {
         raw_window_handle::OhosNdkWindowHandle::new(self.native_window)
+    }
+}
+
+impl From<OhosNdkWindowHandle> for RawWindowHandle {
+    fn from(val: OhosNdkWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::OhosNdkWindowHandle,
+            data: RawWindowHandleData { ohos_ndk: val },
+        }
     }
 }

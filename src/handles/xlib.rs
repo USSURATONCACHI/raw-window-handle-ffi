@@ -1,3 +1,4 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
 use std::ffi::c_ulong;
 
 /// raw_window_handle_ffi:
@@ -34,5 +35,14 @@ impl XlibWindowHandle {
         let mut result = raw_window_handle::XlibWindowHandle::new(self.window);
         result.visual_id = self.visual_id;
         result
+    }
+}
+
+impl From<XlibWindowHandle> for RawWindowHandle {
+    fn from(val: XlibWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::XlibWindowHandle,
+            data: RawWindowHandleData { xlib: val },
+        }
     }
 }

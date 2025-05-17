@@ -1,3 +1,4 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
 use std::{ffi::c_void, ptr::NonNull};
 
 /// raw_window_handle_ffi:
@@ -31,5 +32,14 @@ impl OrbitalWindowHandle {
     /// and therefore it is impossible to convert to it completely safely.
     pub unsafe fn into(self) -> raw_window_handle::OrbitalWindowHandle {
         raw_window_handle::OrbitalWindowHandle::new(self.window)
+    }
+}
+
+impl From<OrbitalWindowHandle> for RawWindowHandle {
+    fn from(val: OrbitalWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::OrbitalWindowHandle,
+            data: RawWindowHandleData { orbital: val },
+        }
     }
 }

@@ -1,5 +1,7 @@
 use std::{ffi::c_void, ptr::NonNull};
 
+use crate::{RawWindowHandle, RawWindowHandleData};
+
 /// raw_window_handle_ffi:
 ///         This type is ABI-stable and FFI-compatible analogue for [`raw_window_handle::AndroidNdkWindowHandle`].
 ///         Can be converted to and from the referenced type.
@@ -29,5 +31,14 @@ impl AndroidNdkWindowHandle {
     /// and therefore it is impossible to convert to it completely safely.
     pub unsafe fn into(self) -> raw_window_handle::AndroidNdkWindowHandle {
         raw_window_handle::AndroidNdkWindowHandle::new(self.a_native_window)
+    }
+}
+
+impl From<AndroidNdkWindowHandle> for RawWindowHandle {
+    fn from(val: AndroidNdkWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::AndroidNdkWindowHandle,
+            data: RawWindowHandleData { android_ndk: val },
+        }
     }
 }

@@ -1,3 +1,4 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
 use std::{ffi::c_void, ptr::NonNull};
 
 /// raw_window_handle_ffi:
@@ -29,5 +30,14 @@ impl WinRtWindowHandle {
     /// and therefore it is impossible to convert to it completely safely.
     pub unsafe fn into(self) -> raw_window_handle::WinRtWindowHandle {
         raw_window_handle::WinRtWindowHandle::new(self.core_window)
+    }
+}
+
+impl From<WinRtWindowHandle> for RawWindowHandle {
+    fn from(val: WinRtWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::WinRtWindowHandle,
+            data: RawWindowHandleData { win_rt: val },
+        }
     }
 }

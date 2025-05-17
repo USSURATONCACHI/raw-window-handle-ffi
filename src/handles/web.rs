@@ -1,3 +1,5 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
+
 /// raw_window_handle_ffi:
 ///         This type is ABI-stable and FFI-compatible analogue for [`raw_window_handle::WebWindowHandle`].
 ///         Can be converted to and from the referenced type.
@@ -31,5 +33,14 @@ impl WebWindowHandle {
     /// and therefore it is impossible to convert to it completely safely.
     pub unsafe fn into(self) -> raw_window_handle::WebWindowHandle {
         raw_window_handle::WebWindowHandle::new(self.id)
+    }
+}
+
+impl From<WebWindowHandle> for RawWindowHandle {
+    fn from(val: WebWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::WebWindowHandle,
+            data: RawWindowHandleData { web: val },
+        }
     }
 }

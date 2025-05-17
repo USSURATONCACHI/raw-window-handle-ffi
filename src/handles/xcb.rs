@@ -1,3 +1,4 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
 use std::num::NonZeroU32;
 
 /// raw_window_handle_ffi:
@@ -34,5 +35,14 @@ impl XcbWindowHandle {
         let mut result = raw_window_handle::XcbWindowHandle::new(self.window);
         result.visual_id = self.visual_id;
         result
+    }
+}
+
+impl From<XcbWindowHandle> for RawWindowHandle {
+    fn from(val: XcbWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::XcbWindowHandle,
+            data: RawWindowHandleData { xcb: val },
+        }
     }
 }

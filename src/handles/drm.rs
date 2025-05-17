@@ -1,3 +1,5 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
+
 /// raw_window_handle_ffi:
 ///         This type is ABI-stable and FFI-compatible analogue for [`raw_window_handle::DrmWindowHandle`].
 ///         Can be converted to and from the referenced type.
@@ -25,5 +27,14 @@ impl DrmWindowHandle {
     /// and therefore it is impossible to convert to it completely safely.
     pub unsafe fn into(self) -> raw_window_handle::DrmWindowHandle {
         raw_window_handle::DrmWindowHandle::new(self.plane)
+    }
+}
+
+impl From<DrmWindowHandle> for RawWindowHandle {
+    fn from(val: DrmWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::DrmWindowHandle,
+            data: RawWindowHandleData { drm: val },
+        }
     }
 }

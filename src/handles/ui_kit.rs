@@ -1,3 +1,4 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
 use std::{ffi::c_void, ptr::NonNull};
 
 /// raw_window_handle_ffi:
@@ -34,5 +35,14 @@ impl UiKitWindowHandle {
         let mut result = raw_window_handle::UiKitWindowHandle::new(self.ui_view);
         result.ui_view_controller = self.ui_view_controller;
         result
+    }
+}
+
+impl From<UiKitWindowHandle> for RawWindowHandle {
+    fn from(val: UiKitWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::UiKitWindowHandle,
+            data: RawWindowHandleData { ui_kit: val },
+        }
     }
 }

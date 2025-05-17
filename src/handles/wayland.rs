@@ -1,3 +1,4 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
 use std::{ffi::c_void, ptr::NonNull};
 
 /// raw_window_handle_ffi:
@@ -29,5 +30,14 @@ impl WaylandWindowHandle {
     /// and therefore it is impossible to convert to it completely safely.
     pub unsafe fn into(self) -> raw_window_handle::WaylandWindowHandle {
         raw_window_handle::WaylandWindowHandle::new(self.surface)
+    }
+}
+
+impl From<WaylandWindowHandle> for RawWindowHandle {
+    fn from(val: WaylandWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::WaylandWindowHandle,
+            data: RawWindowHandleData { wayland: val },
+        }
     }
 }

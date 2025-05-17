@@ -1,3 +1,4 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
 use std::{ffi::c_void, ptr::NonNull};
 
 /// raw_window_handle_ffi:
@@ -34,5 +35,14 @@ impl HaikuWindowHandle {
         let mut result = raw_window_handle::HaikuWindowHandle::new(self.b_window);
         result.b_direct_window = self.b_direct_window;
         result
+    }
+}
+
+impl From<HaikuWindowHandle> for RawWindowHandle {
+    fn from(val: HaikuWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::HaikuWindowHandle,
+            data: RawWindowHandleData { haiku: val },
+        }
     }
 }

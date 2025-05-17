@@ -1,5 +1,7 @@
 use std::{ffi::c_void, ptr::NonNull};
 
+use crate::{RawWindowHandle, RawWindowHandleData};
+
 /// raw_window_handle_ffi:
 ///         This type is ABI-stable and FFI-compatible analogue for [`raw_window_handle::AppKitWindowHandle`].
 ///         Can be converted to and from the referenced type.
@@ -29,5 +31,14 @@ impl AppKitWindowHandle {
     /// and therefore it is impossible to convert to it completely safely.
     pub unsafe fn into(self) -> raw_window_handle::AppKitWindowHandle {
         raw_window_handle::AppKitWindowHandle::new(self.ns_view)
+    }
+}
+
+impl From<AppKitWindowHandle> for RawWindowHandle {
+    fn from(val: AppKitWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::AppKitWindowHandle,
+            data: RawWindowHandleData { app_kit: val },
+        }
     }
 }

@@ -1,3 +1,4 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
 use std::{ffi::c_void, ptr::NonNull};
 
 /// raw_window_handle_ffi:
@@ -29,5 +30,14 @@ impl GbmWindowHandle {
     /// and therefore it is impossible to convert to it completely safely.
     pub unsafe fn into(self) -> raw_window_handle::GbmWindowHandle {
         raw_window_handle::GbmWindowHandle::new(self.gbm_surface)
+    }
+}
+
+impl From<GbmWindowHandle> for RawWindowHandle {
+    fn from(val: GbmWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::GbmWindowHandle,
+            data: RawWindowHandleData { gbm: val },
+        }
     }
 }

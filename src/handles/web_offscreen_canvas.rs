@@ -1,3 +1,4 @@
+use crate::{RawWindowHandle, RawWindowHandleData};
 use std::{ffi::c_void, ptr::NonNull};
 
 /// raw_window_handle_ffi:
@@ -35,5 +36,16 @@ impl WebOffscreenCanvasWindowHandle {
     /// and therefore it is impossible to convert to it completely safely.
     pub unsafe fn into(self) -> raw_window_handle::WebOffscreenCanvasWindowHandle {
         raw_window_handle::WebOffscreenCanvasWindowHandle::new(self.obj)
+    }
+}
+
+impl From<WebOffscreenCanvasWindowHandle> for RawWindowHandle {
+    fn from(val: WebOffscreenCanvasWindowHandle) -> RawWindowHandle {
+        RawWindowHandle {
+            kind: crate::RawWindowHandleKind::WebOffscreenCanvasWindowHandle,
+            data: RawWindowHandleData {
+                web_offscreen_canvas: val,
+            },
+        }
     }
 }
