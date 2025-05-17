@@ -1,0 +1,33 @@
+language = "C"
+header = "/* Auto-generated header by cbindgen. Do not edit directly. */"
+
+[export]
+include = [
+    "UiKitWindowHandle",
+    "WinRtWindowHandle",
+    "HaikuWindowHandle",
+    "RawWindowHandle",
+    "AppKitWindowHandle",
+    "WebCanvasWindowHandle",
+    "GbmWindowHandle",
+    "XlibWindowHandle",
+    "OhosNdkWindowHandle",
+    "WebWindowHandle",
+    "WebOffscreenCanvasWindowHandle",
+    "OrbitalWindowHandle",
+    "AndroidNdkWindowHandle",
+    "DrmWindowHandle",
+    "WaylandWindowHandle",
+    "Win32WindowHandle",
+    "XcbWindowHandle",
+    "Error",
+    "RawWindowHandleKind",
+    "RawWindowHandleData",
+]
+prefix = "rwhf_"
+
+[macro_expansion]
+bitflags = true
+
+[enum]
+rename_variants = "QualifiedScreamingSnakeCase"
