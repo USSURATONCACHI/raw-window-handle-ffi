@@ -1,7 +1,7 @@
 # raw-window-handle-ffi
 
 - C side: header-only type definitions for FFI with rust crate `raw-window-handle`.
-- Rust side:
+- Rust side: FFI types meant to make `raw-window-handle` types FFI-compatible.
 
 ## Build & Install
 

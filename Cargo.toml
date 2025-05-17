@@ -3,7 +3,10 @@ name = "raw-window-handle-ffi"
 version = "0.1.0"
 edition = "2024"
 authors = ["Redchin Daniil <redchindaniil@gmail.com>"]
-repository = ""
+repository = "https://github.com/USSURATONCACHI/raw-window-handle-ffi"
+license-file = "LICENSE"
+keywords = ["raw-window-handle", "window-handle", "ffi", "C"]
+categories = ["development-tools::ffi"]
 
 [dependencies]
 cbindgen = "0.28.0"
