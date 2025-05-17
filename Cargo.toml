@@ -1,5 +1,6 @@
 [package]
 name = "raw-window-handle-ffi"
+description = "FFI types meant to make raw-window-handle types FFI-compatible."
 version = "0.1.0"
 edition = "2024"
 authors = ["Redchin Daniil <redchindaniil@gmail.com>"]
