@@ -26,7 +26,7 @@ impl From<raw_window_handle::HaikuWindowHandle> for HaikuWindowHandle {
 
 impl HaikuWindowHandle {
     /// Converts FFI type back to the original [`raw_window_handle::HaikuWindowHandle`].
-    /// 
+    ///
     /// # Safety
     /// Original type [`raw_window_handle::HaikuWindowHandle`] is marked as `non_exaustive`,
     /// and therefore it is impossible to convert to it completely safely.

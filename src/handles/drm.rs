@@ -19,7 +19,7 @@ impl From<raw_window_handle::DrmWindowHandle> for DrmWindowHandle {
 
 impl DrmWindowHandle {
     /// Converts FFI type back to the original [`raw_window_handle::DrmWindowHandle`].
-    /// 
+    ///
     /// # Safety
     /// Original type [`raw_window_handle::DrmWindowHandle`] is marked as `non_exaustive`,
     /// and therefore it is impossible to convert to it completely safely.

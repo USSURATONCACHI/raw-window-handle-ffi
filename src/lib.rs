@@ -132,6 +132,7 @@ impl TryFrom<raw_window_handle::RawWindowHandle> for RawWindowHandle {
 impl RawWindowHandle {
     /// Converts FFI type back to the [`raw_window_handle::RawWindowHandle`].
     ///
+    /// # Safety
     /// Unsafe because all non-FFI values are `#[non_exaustive]` and its impossible to safely convert to those.
     pub unsafe fn into_handle(self) -> raw_window_handle::RawWindowHandle {
         unsafe {

@@ -23,7 +23,7 @@ impl From<raw_window_handle::AndroidNdkWindowHandle> for AndroidNdkWindowHandle 
 
 impl AndroidNdkWindowHandle {
     /// Converts FFI type back to the original [`raw_window_handle::AndroidNdkWindowHandle`].
-    /// 
+    ///
     /// # Safety
     /// Original type [`raw_window_handle::AndroidNdkWindowHandle`] is marked as `non_exaustive`,
     /// and therefore it is impossible to convert to it completely safely.

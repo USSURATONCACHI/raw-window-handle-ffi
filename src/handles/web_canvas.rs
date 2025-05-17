@@ -35,7 +35,7 @@ impl From<raw_window_handle::WebCanvasWindowHandle> for WebCanvasWindowHandle {
 
 impl WebCanvasWindowHandle {
     /// Converts FFI type back to the original [`raw_window_handle::AppKitWindowHandle`].
-    /// 
+    ///
     /// # Safety
     /// Original type [`raw_window_handle::AppKitWindowHandle`] is marked as `non_exaustive`,
     /// and therefore it is impossible to convert to it completely safely.

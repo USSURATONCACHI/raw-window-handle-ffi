@@ -23,7 +23,7 @@ impl From<raw_window_handle::GbmWindowHandle> for GbmWindowHandle {
 
 impl GbmWindowHandle {
     /// Converts FFI type back to the original [`raw_window_handle::GbmWindowHandle`].
-    /// 
+    ///
     /// # Safety
     /// Original type [`raw_window_handle::GbmWindowHandle`] is marked as `non_exaustive`,
     /// and therefore it is impossible to convert to it completely safely.
